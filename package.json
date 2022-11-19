@@ -1,0 +1,14 @@
+{
+	"name": "wl.js",
+	"version": "1.0.0",
+	"description": "Javascript library for swapping languages",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc -p ."
+	},
+	"author": "Tinnaphat Somsang <s16123@acsp.ac.th>",
+	"dependencies": {
+		"typescript": "^4.9.3",
+		"@types/node": "^18.11.9"
+	}
+}
