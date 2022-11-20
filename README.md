@@ -9,10 +9,31 @@
 </p>
 
 # Table of Contents
+
 - [Language Swap](#language-swap)
 - [Unshift](#unshift)
 - [Custom Keyboard Layouts](#custom-keyboard-layouts)
 
 # Language Swap
+
 ```js
-const { WrongLang } = require("wl.js");
+import { WrongLang } from "wl.js";
+const wrongLang = new WrongLang();
+const output = wrongLang.swap({
+  layout: {
+    from: "Kedmanee",
+    to: "Qwerty",
+  },
+});
+```
+
+# Unshift
+
+```js
+import { WrongLang } from "wl.js";
+const wrongLang = new WrongLang();
+const output = wrongLang.unshift({
+  layout: "Kedmanee",
+  text: "ศซํศโ๊๕ณํฐ
+})
+```
