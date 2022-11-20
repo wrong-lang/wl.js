@@ -4,7 +4,7 @@
     WrongLang.js (wl.js)
   </h1>
   <p align="center">
-    Javascript library for swapping languages
+    Javascript library for swapping languages when you forgor 💀
   </p>
 </p>
 
@@ -24,7 +24,10 @@ const output = wrongLang.swap({
     from: "Kedmanee",
     to: "Qwerty",
   },
+  text: "l;ylfu8iy["
 });
+
+console.log(output); // "สวัสดีครับ"
 ```
 
 # Unshift
@@ -34,6 +37,36 @@ import { WrongLang } from "wl.js";
 const wrongLang = new WrongLang();
 const output = wrongLang.unshift({
   layout: "Kedmanee",
-  text: "ศซํศโ๊๕ณํฐ
+  text: "ศซํศโ๊๕ณํฐ",
 })
+
+console.log(output); // "สวัสดีครับ"
+```
+
+# Custom Layouts
+
+```js
+import { WrongLang } from "wl.js";
+const wrongLang = new WrongLang({
+  customLayouts: [
+    {
+      name: "MyLayout",
+      keys: {
+        normal: "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".split(""),
+        shift: "~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?".split("")
+      }
+    }
+  ],
+  defineKeyLength: 93 // (Default)
+});
+
+const output = wrongLang.swap({
+  layout: {
+    from: "MyLayout",
+    to: "Kedmanee",
+  },
+  text: "l;ylfu8iy["
+});
+
+console.log(output); // "สวัสดีครับ"
 ```

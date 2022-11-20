@@ -9,8 +9,8 @@ describe("WrongLang", function () {
       assert.equal(
         wrongLang.languageSwap({
           layout: {
-            from: "Kedmanee",
-            to: "Qwerty",
+            from: "Qwerty",
+            to: "Kedmanee",
           },
           text: "l;ylfu8iy[",
         }),
