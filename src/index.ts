@@ -1,6 +1,8 @@
 import { layout } from "./data/layout";
 
 export class WrongLang {
+  public layout = layout;
+
   constructor({
     ...data
   }: {
