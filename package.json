@@ -1,8 +1,8 @@
 {
   "name": "wl.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Javascript library for swapping languages",
-  "main": "dist/src/index.js",
+  "main": "dist/index.js",
   "types": "types/wl.js.d.ts",
   "repository": "https://github.com/Wrong-Lang/wl.js",
   "scripts": {
