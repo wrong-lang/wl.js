@@ -19,7 +19,7 @@
 ```js
 import { WrongLang } from "wl.js";
 const wrongLang = new WrongLang();
-const output = wrongLang.swap({
+const output = wrongLang.language({
   layout: {
     from: "Kedmanee",
     to: "Qwerty",
