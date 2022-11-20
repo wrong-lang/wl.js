@@ -18,7 +18,7 @@
 
 ```js
 import { WrongLang } from "wl.js";
-const wrongLang = new WrongLang();
+const wrongLang = new WrongLang({});
 const output = wrongLang.languageSwap({
   layout: {
     from: "Kedmanee",
@@ -34,7 +34,7 @@ console.log(output); // "สวัสดีครับ"
 
 ```js
 import { WrongLang } from "wl.js";
-const wrongLang = new WrongLang();
+const wrongLang = new WrongLang({});
 const output = wrongLang.unshift({
   layout: "Kedmanee",
   text: "ศซํศโ๊๕ณํฐ",
