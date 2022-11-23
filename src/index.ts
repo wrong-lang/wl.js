@@ -1,6 +1,6 @@
 import { layout } from "./data/layout";
 
-class WrongLang {
+export class WrongLang {
   public layout = layout;
 
   constructor({
@@ -86,5 +86,3 @@ class WrongLang {
 
   }
 }
-
-export default WrongLang;
