@@ -10,16 +10,16 @@
 
 # Table of Contents
 
-- [Language Swap](#language-swap)
+- [Key Swap](#key-swap)
 - [Unshift](#unshift)
 - [Custom Keyboard Layouts](#custom-keyboard-layouts)
 
-# Language Swap
+# Key Swap
 
 ```js
 import { WrongLang } from "wl.js";
-const wrongLang = new WrongLang({});
-const output = wrongLang.languageSwap({
+const wrongLang = new WrongLang();
+const output = wrongLang.keySwap({
   layout: {
     from: "Kedmanee",
     to: "Qwerty",
@@ -34,7 +34,7 @@ console.log(output); // "สวัสดีครับ"
 
 ```js
 import { WrongLang } from "wl.js";
-const wrongLang = new WrongLang({});
+const wrongLang = new WrongLang();
 const output = wrongLang.unshift({
   layout: "Kedmanee",
   text: "ศซํศโ๊๕ณํฐ",
@@ -60,7 +60,7 @@ const wrongLang = new WrongLang({
   defineKeyLength: 93 // (Default)
 });
 
-const output = wrongLang.swap({
+const output = wrongLang.keySwap({
   layout: {
     from: "MyLayout",
     to: "Kedmanee",

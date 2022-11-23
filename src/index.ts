@@ -1,6 +1,6 @@
 import { layout } from "./data/layout";
 
-export class WrongLang {
+class WrongLang {
   public layout = layout;
 
   constructor({
@@ -21,6 +21,7 @@ export class WrongLang {
         }
 
         layout[clayout.name as keyof typeof layout] = clayout.keys;
+        this.layout = layout;
       });
     }
   }
@@ -85,3 +86,5 @@ export class WrongLang {
 
   }
 }
+
+export default WrongLang;
