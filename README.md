@@ -10,9 +10,31 @@
 
 # Table of Contents
 
+- [Installiation](#installation)
 - [Key Swap](#key-swap)
 - [Unshift](#unshift)
 - [Custom Keyboard Layouts](#custom-keyboard-layouts)
+
+# Installation
+
+With node package manager:
+```bash
+npm i wl.js@latest # or your preferred package manager
+```
+
+With a script tag:
+```html
+<script src="https://unpkg.com/wl.js"></script>
+```
+
+With pain (self-hosting): 
+1. Download the source code from [wrong-lang/wl.js](https://github.com/wrong-lang/wl.js)
+2. Copy the `dist/index.min.js` file to your project
+3. Add this script tag to your html file
+```html
+<script src="index.min.js"></script>
+```
+4. Have fun!
 
 # Key Swap
 

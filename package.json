@@ -10,6 +10,7 @@
     "test": "mocha ./test/test.ts"
   },
   "author": "Tinnaphat Somsang <s16123@acsp.ac.th>",
+  "unpkg": "dist/index.min.js",
   "dependencies": {
     "@rollup/plugin-typescript": "^9.0.2",
     "@types/node": "^18.11.9",
