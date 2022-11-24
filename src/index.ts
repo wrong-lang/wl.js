@@ -83,6 +83,5 @@ export class WrongLang {
           : char.toUpperCase()
       })
       .join("")
-
   }
 }
