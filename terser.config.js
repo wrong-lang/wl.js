@@ -23,14 +23,10 @@ const config = {
     toplevel: true,
     safari10: true
   },
-  module: true,
   sourceMap: {
     filename: 'index.min.js',
     url: 'index.min.js.map'
   },
-  output: {
-    comments: 'some'
-  }
 };
 
 // Load in your code to minify

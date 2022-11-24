@@ -4,7 +4,7 @@ export default {
   input: 'dist/index.js',
   output: {
     dir: 'dist',
-    format: 'iife'
+    format: "esm",
   },
   plugins: [typescript()]
 };
