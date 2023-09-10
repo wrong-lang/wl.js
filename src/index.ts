@@ -13,14 +13,14 @@ export class WrongLang {
     }>;
   } = { defineKeyLength: 93 }) {
     if (data.customLayouts) {
-      data.customLayouts.forEach((clayout) => {
-        if (clayout.keys.normal.concat(clayout.keys.shift).length !== data.defineKeyLength) {
+      data.customLayouts.forEach((cLayout) => {
+        if (cLayout.keys.normal.concat(cLayout.keys.shift).length !== data.defineKeyLength) {
           console.warn(
-            `[WL.js] The length of keys in ${clayout.name} does not match the defined key length (${data.defineKeyLength} keys). This may end up in unexpected behaviour.`
+            `[WL.js] The length of keys in ${cLayout.name} does not match the defined key length (${data.defineKeyLength} keys). This may end up in unexpected behaviour.`
           );
         }
 
-        layout[clayout.name as keyof typeof layout] = clayout.keys;
+        layout[cLayout.name as keyof typeof layout] = cLayout.keys;
         this.layout = layout;
       });
     }
@@ -29,30 +29,30 @@ export class WrongLang {
   languageSwap({
     ...data
   }: {
-    layout: { from: keyof typeof layout | string; to: keyof typeof layout | string };
+    layout?: { primary?: keyof typeof layout | string; secondary?: keyof typeof layout | string };
     text: string;
-  }): string {
-    let layoutFrom = data.layout.from as keyof typeof layout,
-        layoutTo   = data.layout.to as keyof typeof layout;
+  } = { layout: { primary: "Kedmanee", secondary: "Qwerty" }, text: "" }): string {
+    let layoutPrimary = data.layout?.primary as keyof typeof layout,
+        layoutSecondary   = data.layout?.secondary as keyof typeof layout;
 
-    if (!layout[layoutFrom] || !layout[layoutTo]) {
-      throw new Error(`[WL.js] The layout "${data.layout.from}" or "${data.layout.to}" does not exist.`);
+    if (!layout[layoutPrimary] || !layout[layoutSecondary]) {
+      throw new Error(`[WL.js] The layout "${data.layout?.primary}" or "${data.layout?.secondary}" does not exist.`);
     }
 
     return data.text
       .split("")
       .map((char) => {
         return (
-          layout[layoutFrom].shift.concat(
-            layout[layoutFrom].normal
+          layout[layoutPrimary].shift.concat(
+            layout[layoutPrimary].normal
           )[
-            layout[layoutTo].shift
-              .concat(layout[layoutTo].normal)
+            layout[layoutSecondary].shift
+              .concat(layout[layoutSecondary].normal)
               .indexOf(char)
           ] ||
-          layout[layoutTo].shift.concat(layout[layoutTo].normal)[
-            layout[layoutFrom].shift
-              .concat(layout[layoutFrom].normal)
+          layout[layoutSecondary].shift.concat(layout[layoutSecondary].normal)[
+            layout[layoutPrimary].shift
+              .concat(layout[layoutPrimary].normal)
               .indexOf(char)
           ] ||
           char

@@ -25,7 +25,10 @@ declare module "wl.js" {
      * @param opts.text The text to swap the layout of.
      * @returns The text with the layout swapped.
      */
-    keySwap(opts?: { layout: { from: string, to: string }, text: string }): string;
+    languageSwap(opts: {
+      layout?: { from?: keyof typeof layout | string; to?: keyof typeof layout | string };
+      text: string;
+    }): string;
 
     /**
      * Convert shift and unshift characters.
@@ -34,6 +37,6 @@ declare module "wl.js" {
      * @param opts.text Text to convert
      * @returns Converted text
      */
-    unshift(opts?: { layout: string, text: string }): string;
+    unshift(opts: { layout: keyof typeof layout | string, text: string }): string;
   }
 }

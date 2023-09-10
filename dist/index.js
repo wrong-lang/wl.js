@@ -41,29 +41,30 @@ class WrongLang {
         var data = __rest(_a, []);
         this.layout = layout;
         if (data.customLayouts) {
-            data.customLayouts.forEach((clayout) => {
-                if (clayout.keys.normal.concat(clayout.keys.shift).length !== data.defineKeyLength) {
-                    console.warn(`[WL.js] The length of keys in ${clayout.name} does not match the defined key length (${data.defineKeyLength} keys). This may end up in unexpected behaviour.`);
+            data.customLayouts.forEach((cLayout) => {
+                if (cLayout.keys.normal.concat(cLayout.keys.shift).length !== data.defineKeyLength) {
+                    console.warn(`[WL.js] The length of keys in ${cLayout.name} does not match the defined key length (${data.defineKeyLength} keys). This may end up in unexpected behaviour.`);
                 }
-                layout[clayout.name] = clayout.keys;
+                layout[cLayout.name] = cLayout.keys;
                 this.layout = layout;
             });
         }
     }
-    languageSwap(_a) {
+    languageSwap(_a = { layout: { primary: "Kedmanee", secondary: "Qwerty" }, text: "" }) {
+        var _b, _c, _d, _e;
         var data = __rest(_a, []);
-        let layoutFrom = data.layout.from, layoutTo = data.layout.to;
-        if (!layout[layoutFrom] || !layout[layoutTo]) {
-            throw new Error(`[WL.js] The layout "${data.layout.from}" or "${data.layout.to}" does not exist.`);
+        let layoutPrimary = (_b = data.layout) === null || _b === void 0 ? void 0 : _b.primary, layoutSecondary = (_c = data.layout) === null || _c === void 0 ? void 0 : _c.secondary;
+        if (!layout[layoutPrimary] || !layout[layoutSecondary]) {
+            throw new Error(`[WL.js] The layout "${(_d = data.layout) === null || _d === void 0 ? void 0 : _d.primary}" or "${(_e = data.layout) === null || _e === void 0 ? void 0 : _e.secondary}" does not exist.`);
         }
         return data.text
             .split("")
             .map((char) => {
-            return (layout[layoutFrom].shift.concat(layout[layoutFrom].normal)[layout[layoutTo].shift
-                .concat(layout[layoutTo].normal)
+            return (layout[layoutPrimary].shift.concat(layout[layoutPrimary].normal)[layout[layoutSecondary].shift
+                .concat(layout[layoutSecondary].normal)
                 .indexOf(char)] ||
-                layout[layoutTo].shift.concat(layout[layoutTo].normal)[layout[layoutFrom].shift
-                    .concat(layout[layoutFrom].normal)
+                layout[layoutSecondary].shift.concat(layout[layoutSecondary].normal)[layout[layoutPrimary].shift
+                    .concat(layout[layoutPrimary].normal)
                     .indexOf(char)] ||
                 char);
         })

@@ -36,15 +36,15 @@ With pain (self-hosting):
 ```
 4. Have fun!
 
-# Key Swap
+# Language Swap
 
 ```js
 import { WrongLang } from "wl.js";
 const wrongLang = new WrongLang();
-const output = wrongLang.keySwap({
+const output = wrongLang.languageSwap({
   layout: {
-    from: "Kedmanee",
-    to: "Qwerty",
+    primary: "Kedmanee", // Default: Kedmanee
+    secondary: "Qwerty", // Default: Qwerty
   },
   text: "l;ylfu8iy["
 });
@@ -82,7 +82,7 @@ const wrongLang = new WrongLang({
   defineKeyLength: 93 // (Default)
 });
 
-const output = wrongLang.keySwap({
+const output = wrongLang.languageSwap({
   layout: {
     from: "MyLayout",
     to: "Kedmanee",
