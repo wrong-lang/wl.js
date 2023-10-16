@@ -1,6 +1,6 @@
 {
   "name": "wl.js",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Javascript library for swapping languages",
   "main": "dist/index.js",
   "types": "types/wl.js.d.ts",
@@ -12,17 +12,15 @@
   },
   "author": "Tinnaphat Somsang <s16123@acsp.ac.th>",
   "unpkg": "dist/index.min.js",
-  "dependencies": {
+  "devDependencies": {
     "@rollup/plugin-typescript": "^9.0.2",
+    "@types/mocha": "^10.0.0",
     "@types/node": "^18.11.9",
+    "mocha": "^10.1.0",
     "rollup": "^3.4.0",
     "terser": "^5.15.1",
     "ts-node": "^10.9.1",
     "tslib": "^2.4.1",
     "typescript": "^4.9.3"
-  },
-  "devDependencies": {
-    "@types/mocha": "^10.0.0",
-    "mocha": "^10.1.0"
   }
 }

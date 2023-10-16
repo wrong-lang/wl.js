@@ -84,8 +84,8 @@ const wrongLang = new WrongLang({
 
 const output = wrongLang.languageSwap({
   layout: {
-    from: "MyLayout",
-    to: "Kedmanee",
+    primary: "MyLayout",
+    secondary: "Kedmanee",
   },
   text: "l;ylfu8iy["
 });
