@@ -1,6 +1,6 @@
 {
   "name": "wl.js",
-  "version": "1.2.3",
+  "version": "1.2.5",
   "description": "Javascript library for swapping languages",
   "main": "dist/index.js",
   "types": "types/wl.js.d.ts",
