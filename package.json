@@ -1,12 +1,13 @@
 {
   "name": "wl.js",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "Javascript library for swapping languages",
   "main": "dist/index.js",
   "types": "types/wl.js.d.ts",
+  "type": "module",
   "repository": "https://github.com/Wrong-Lang/wl.js",
   "scripts": {
-    "build": "tsc -p . && rollup -c && node terser.config.js",
+    "build": "tsc -p . && rollup -c && node terser.config.cjs",
     "test": "mocha ./test/test.ts"
   },
   "author": "Tinnaphat Somsang <s16123@acsp.ac.th>",

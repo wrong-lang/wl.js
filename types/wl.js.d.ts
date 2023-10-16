@@ -26,7 +26,7 @@ declare module "wl.js" {
      * @returns The text with the layout swapped.
      */
     languageSwap(opts: {
-      layout?: { from?: keyof typeof layout | string; to?: keyof typeof layout | string };
+      layout?: { primary?: keyof typeof layout | string; secondary?: keyof typeof layout | string };
       text: string;
     }): string;
 
