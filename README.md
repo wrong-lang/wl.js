@@ -1,11 +1,11 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/wrong-lang/WrongLang-Solid/main/public/web.png" width="150">
   <h1 align="center">
-    WrongLang.js (wl.js) 2
+    WrongLang.js (wl.js)
   </h1>
   <p align="center">
     Javascript library for swapping languages when you forgor 💀
-    ...and faster than ever!
+    ...and faster than ever! (<a href="https://wl.tinarskii.com/">wl.tinarskii.com</a>)
   </p>
 </p>
 
@@ -33,8 +33,13 @@ With a script tag:
 With pain (self-hosting):
 
 1. Download the source code from [wrong-lang/wl.js](https://github.com/wrong-lang/wl.js)
-2. Copy the `dist/index.min.js` file to your project
-3. Add this script tag to your html file
+2. Build the source code with the following command:
+
+```bash
+npm run build # or your preferred package manager
+```
+
+3. Include the built file in your HTML:
 
 ```html
 <script src="index.min.js"></script>
@@ -46,7 +51,7 @@ With pain (self-hosting):
 
 ```js
 // File: ./examples/languageSwap.js
-import { WrongLang } from "../dist/index.js";
+import { WrongLang } from "wl.js";
 const wrongLang = new WrongLang();
 
 const output = wrongLang.languageSwap({
@@ -64,7 +69,7 @@ console.log(output); // "สวัสดีครับ"
 
 ```js
 // File: ./examples/unshift.js
-import { WrongLang } from "../dist/index.js";
+import { WrongLang } from "wl.js";
 const wrongLang = new WrongLang();
 
 let output = wrongLang.unshift({
@@ -90,8 +95,8 @@ console.log(output); // "Hello everynyan. How are you? Fine, sankyuu."
 import { WrongLang } from "wl.js";
 const wrongLang = new WrongLang();
 
-wrongLang.addCustomLayout(
-  {
+wrongLang.addCustomLayout({
+  customLayout: {
     name: "Morse",
     keys: {
       normal:
@@ -104,19 +109,19 @@ wrongLang.addCustomLayout(
         ),
     },
   },
-  54,
-);
+  defineKeyLength: 54,
+});
 
-wrongLang.addCustomLayout(
-  {
+wrongLang.addCustomLayout({
+  customLayout: {
     name: "Alphabet",
     keys: {
       normal: "abcdefghijklmnopqrstuvwxyz ".split(""),
       shift: "abcdefghijklmnopqrstuvwxyz ".toUpperCase().split(""),
     },
   },
-  54,
-);
+  defineKeyLength: 54,
+});
 
 const output = wrongLang.languageSwap({
   layout: {

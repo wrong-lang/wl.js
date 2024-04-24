@@ -10,7 +10,7 @@ wrongLang.languageSwap({
     primary: "Kedmanee", // Default: Kedmanee
     secondary: "Qwerty", // Default: Qwerty
   },
-  text: "l;ylfu8iy[".repeat(1000000)
+  text: "l;ylfu8iy[".repeat(1000000),
 });
 let wlEnd = Date.now();
 

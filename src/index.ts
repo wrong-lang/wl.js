@@ -33,10 +33,10 @@ interface CustomLayout {
 export class WrongLang {
   public layout: Record<string, { normal: string[]; shift: string[] }>;
 
-  constructor(
-    customLayouts: CustomLayout[] = [],
-    defineKeyLength: number = 94,
-  ) {
+  constructor({
+    customLayouts = [],
+    defineKeyLength = 94,
+  }: { customLayouts?: CustomLayout[]; defineKeyLength?: number } = {}) {
     this.layout = { ...layout };
     customLayouts.forEach((customLayout) => {
       if (
@@ -149,10 +149,13 @@ export class WrongLang {
       .join("");
   }
 
-  addCustomLayout(
-    customLayout: CustomLayout,
-    defineKeyLength: number = 94,
-  ): void {
+  addCustomLayout({
+    customLayout,
+    defineKeyLength = 94,
+  }: {
+    customLayout: CustomLayout;
+    defineKeyLength: number;
+  }): void {
     if (
       customLayout.keys.normal.concat(customLayout.keys.shift).length !==
       defineKeyLength

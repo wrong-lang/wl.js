@@ -31,10 +31,10 @@ declare module "wl.js" {
      *  defineKeyLength: 94,
      * });
      */
-    constructor(
-      customLayouts: CustomLayout[] = [],
-      defineKeyLength: number = 94,
-    );
+    constructor({
+      customLayouts = [],
+      defineKeyLength = 94,
+    }: { customLayouts?: CustomLayout[]; defineKeyLength?: number } = {});
 
     /**
      * Swap all characters in a string from one layout to another.
@@ -71,9 +71,12 @@ declare module "wl.js" {
      * @param customLayout.keys.shift The "shifted" keys of the layout.
      * @param defineKeyLength The amount of shift and unshift keys that are in the layout.
      */
-    addCustomLayout(
-      customLayout: CustomLayout,
-      defineKeyLength: number = 93,
-    ): void;
+    addCustomLayout({
+      customLayout,
+      defineKeyLength = 94,
+    }: {
+      customLayout: CustomLayout;
+      defineKeyLength: number;
+    }): void;
   }
 }

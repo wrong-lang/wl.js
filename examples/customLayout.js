@@ -1,8 +1,8 @@
 import { WrongLang } from "../dist/index.js";
 const wrongLang = new WrongLang();
 
-wrongLang.addCustomLayout(
-  {
+wrongLang.addCustomLayout({
+  customLayout: {
     name: "Morse",
     keys: {
       normal:
@@ -15,19 +15,19 @@ wrongLang.addCustomLayout(
         ),
     },
   },
-  54,
-);
+  defineKeyLength: 54,
+});
 
-wrongLang.addCustomLayout(
-  {
+wrongLang.addCustomLayout({
+  customLayout: {
     name: "Alphabet",
     keys: {
       normal: "abcdefghijklmnopqrstuvwxyz ".split(""),
       shift: "abcdefghijklmnopqrstuvwxyz ".toUpperCase().split(""),
     },
   },
-  54,
-);
+  defineKeyLength: 54,
+});
 
 const output = wrongLang.languageSwap({
   layout: {

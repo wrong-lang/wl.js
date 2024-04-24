@@ -1,4 +1,2 @@
 dist/
-*.config.mjs
-*.config.cjs
 node_modules/
