@@ -14,6 +14,7 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^9.0.2",
     "@types/node": "^18.11.9",
+    "gode.js": "^2.1.4",
     "rollup": "^3.4.0",
     "terser": "^5.15.1",
     "tslib": "^2.6.2",
