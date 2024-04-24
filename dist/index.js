@@ -12,83 +12,102 @@ const layout = {
         shift: '~!@#$%^&*()_+ฒฏซญฟฉึธฐฎฆฑฌษถแชพผำขโภ"ฤฝๆณ๊๋์ศฮ?'.split(""),
     },
     Qwerty: {
-        normal: "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,.".split(""),
+        normal: "`1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".split(""),
         shift: '~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:"ZXCVBNM<>?'.split(""),
     },
     Dvorak: {
-        normal: "1234567890[]',.pyfgcrl/=\\aoeuidhtns-;qjkxbmwvz".split(""),
-        shift: '!@#$%^&*(){}"<>PYFGCRL?+|AOEUIDHTNS_:QJKXBMWVZ'.split(""),
+        normal: "`1234567890[]',.pyfgcrl/=\\aoeuidhtns-;qjkxbmwvz".split(""),
+        shift: '~!@#$%^&*(){}"<>PYFGCRL?+|AOEUIDHTNS_:QJKXBMWVZ'.split(""),
     },
     Colemak: {
-        normal: "1234567890-=qwfpgjluy;[]\\arstdhneio'zxcvbkm,./".split(""),
-        shift: '!@#$%^&*()_+QWFGPJLUY:{}|ARSTDHNEIO"ZXCVBKM<>?'.split(""),
+        normal: "`1234567890-=qwfpgjluy;[]\\arstdhneio'zxcvbkm,./".split(""),
+        shift: '~!@#$%^&*()_+QWFGPJLUY:{}|ARSTDHNEIO"ZXCVBKM<>?'.split(""),
     },
 };
-
-var __rest = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 class WrongLang {
-    constructor(_a = { defineKeyLength: 93 }) {
-        var data = __rest(_a, []);
-        this.layout = layout;
-        if (data.customLayouts) {
-            data.customLayouts.forEach((cLayout) => {
-                if (cLayout.keys.normal.concat(cLayout.keys.shift).length !== data.defineKeyLength) {
-                    console.warn(`[WL.js] The length of keys in ${cLayout.name} does not match the defined key length (${data.defineKeyLength} keys). This may end up in unexpected behaviour.`);
-                }
-                layout[cLayout.name] = cLayout.keys;
-                this.layout = layout;
-            });
-        }
+    layout;
+    constructor(customLayouts = [], defineKeyLength = 94) {
+        this.layout = { ...layout };
+        customLayouts.forEach((customLayout) => {
+            if (customLayout.keys.normal.concat(customLayout.keys.shift).length !==
+                defineKeyLength) {
+                console.warn(`[WL.js] The length of keys in ${customLayout.name} does not match the defined key length (${defineKeyLength} keys). This may result in unexpected behavior.`);
+            }
+            this.layout[customLayout.name] = customLayout.keys;
+        });
     }
-    languageSwap(_a = { layout: { primary: "Kedmanee", secondary: "Qwerty" }, text: "" }) {
-        var _b, _c, _d, _e;
-        var data = __rest(_a, []);
-        let layoutPrimary = (_b = data.layout) === null || _b === void 0 ? void 0 : _b.primary, layoutSecondary = (_c = data.layout) === null || _c === void 0 ? void 0 : _c.secondary;
-        if (!layout[layoutPrimary] || !layout[layoutSecondary]) {
-            throw new Error(`[WL.js] The layout "${(_d = data.layout) === null || _d === void 0 ? void 0 : _d.primary}" or "${(_e = data.layout) === null || _e === void 0 ? void 0 : _e.secondary}" does not exist.`);
+    languageSwap({ layout: { primary = "Kedmanee", secondary = "Qwerty" } = {}, text = "", } = {}) {
+        const layoutPrimary = this.layout[primary];
+        const layoutSecondary = this.layout[secondary];
+        if (!layoutPrimary || !layoutSecondary) {
+            throw new Error(`[WL.js] The layout "${primary}" or "${secondary}" does not exist.`);
         }
-        return data.text
+        const primaryNormal = layoutPrimary.normal;
+        const primaryShift = layoutPrimary.shift;
+        const secondaryNormal = layoutSecondary.normal;
+        const secondaryShift = layoutSecondary.shift;
+        const primaryNormalCodes = primaryNormal.map((char) => char.charCodeAt(0));
+        const primaryShiftCodes = primaryShift.map((char) => char.charCodeAt(0));
+        const secondaryNormalCodes = secondaryNormal.map((char) => char.charCodeAt(0));
+        const secondaryShiftCodes = secondaryShift.map((char) => char.charCodeAt(0));
+        return text
             .split("")
             .map((char) => {
-            return (layout[layoutPrimary].shift.concat(layout[layoutPrimary].normal)[layout[layoutSecondary].shift
-                .concat(layout[layoutSecondary].normal)
-                .indexOf(char)] ||
-                layout[layoutSecondary].shift.concat(layout[layoutSecondary].normal)[layout[layoutPrimary].shift
-                    .concat(layout[layoutPrimary].normal)
-                    .indexOf(char)] ||
-                char);
+            const charCode = char.charCodeAt(0);
+            let index;
+            if ((index = primaryNormalCodes.indexOf(charCode)) !== -1) {
+                return secondaryNormal[index] || char;
+            }
+            else if ((index = primaryShiftCodes.indexOf(charCode)) !== -1) {
+                return secondaryShift[index] || char;
+            }
+            if ((index = secondaryNormalCodes.indexOf(charCode)) !== -1) {
+                return primaryNormal[index] || char;
+            }
+            else if ((index = secondaryShiftCodes.indexOf(charCode)) !== -1) {
+                return primaryShift[index] || char;
+            }
+            return char;
         })
             .join("");
     }
-    unshift(_a) {
-        var data = __rest(_a, []);
-        let selectedLayout = data.layout;
-        if (!layout[selectedLayout]) {
-            throw new Error(`[WL.js] The layout "${data.layout}" does not exist.`);
+    unshift({ layout: selectedLayout = "Qwerty", text = "", realShift = true, } = {}) {
+        const layoutSelected = this.layout[selectedLayout];
+        if (!realShift) {
+            return text
+                .split("")
+                .map((char) => /[A-Z]/.test(char) ? char.toLowerCase() : char.toUpperCase())
+                .join("");
         }
-        return data.text
+        if (!layoutSelected) {
+            throw new Error(`[WL.js] The layout "${selectedLayout}" does not exist.`);
+        }
+        const normalKeys = layoutSelected.normal;
+        const shiftKeys = layoutSelected.shift;
+        const normalCodes = normalKeys.map((char) => char.charCodeAt(0));
+        const shiftCodes = shiftKeys.map((char) => char.charCodeAt(0));
+        return text
             .split("")
             .map((char) => {
-            return layout[selectedLayout].shift.concat(layout[selectedLayout].normal)[layout[selectedLayout].normal
-                .concat(layout[selectedLayout].shift)
-                .indexOf(char)] || char;
+            const charCode = char.charCodeAt(0);
+            let index;
+            if ((index = shiftCodes.indexOf(charCode)) !== -1) {
+                return normalKeys[index] || char;
+            }
+            if ((index = normalCodes.indexOf(charCode)) !== -1) {
+                return shiftKeys[index] || char;
+            }
+            return char;
         })
-            .map((char) => {
-            return /[A-Z]/.test(char)
-                ? char.toLowerCase()
-                : char.toUpperCase();
-        })
+            .map((char) => /[A-Z]/.test(char) ? char.toLowerCase() : char.toUpperCase())
             .join("");
+    }
+    addCustomLayout(customLayout, defineKeyLength = 94) {
+        if (customLayout.keys.normal.concat(customLayout.keys.shift).length !==
+            defineKeyLength) {
+            console.warn(`[WrongLang] The length of keys in ${customLayout.name} does not match the defined key length (${defineKeyLength} keys). This may result in unexpected behavior.`);
+        }
+        this.layout[customLayout.name] = customLayout.keys;
     }
 }
 

@@ -1,10 +1,10 @@
-import typescript from '@rollup/plugin-typescript';
+import typescript from "@rollup/plugin-typescript";
 
 export default {
-  input: 'dist/index.js',
+  input: "dist/index.js",
   output: {
-    dir: 'dist',
+    dir: "dist",
     format: "esm",
   },
-  plugins: [typescript()]
+  plugins: [typescript()],
 };
