@@ -1,6 +1,6 @@
 {
   "name": "wl.js",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Javascript library for swapping languages",
   "main": "dist/index.js",
   "types": "types/wl.js.d.ts",
@@ -10,7 +10,8 @@
     "build": "tsc -p . && rollup -c && node terser.config.cjs"
   },
   "files": [
-    "dist/*.js"
+    "dist/*.js",
+    "types/*.d.ts"
   ],
   "author": "Tinnaphat Somsang <s16123@acsp.ac.th>",
   "unpkg": "dist/index.min.js",
