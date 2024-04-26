@@ -5,7 +5,7 @@
   </h1>
   <p align="center">
     Javascript library for swapping languages when you forgor 💀
-    ...and faster than ever! (<a href="https://wl.tinarskii.com/">wl.tinarskii.com</a>)
+    ...and faster than ever! (Faster than <a href="https://npmjs.com/package/gode.js">G;ode.js</a> 40%)
   </p>
 </p>
 
@@ -14,7 +14,7 @@
 - [Installiation](#installation)
 - [Key Swap](#key-swap)
 - [Unshift](#unshift)
-- [Custom Keyboard Layouts](#custom-keyboard-layouts)
+- [Custom Keyboard Layouts](#custom-layouts)
 
 # Installation
 

@@ -2,23 +2,37 @@ import { WrongLang } from "../dist/index.js";
 import { convert } from "gode.js";
 
 const wrongLang = new WrongLang();
+let godeT = 0;
+let wlT = 0;
 
-// ========= A Million Hello =========
-let wlStart = Date.now();
-wrongLang.languageSwap({
-  layout: {
-    primary: "Kedmanee", // Default: Kedmanee
-    secondary: "Qwerty", // Default: Qwerty
-  },
-  text: "l;ylfu8iy[".repeat(1000000),
-});
-let wlEnd = Date.now();
+for (let i = 0; i < 100; i++) {
+  let wlStart = performance.now();
+  wrongLang.languageSwap({
+    layout: {
+      primary: "Kedmanee", // Default: Kedmanee
+      secondary: "Qwerty", // Default: Qwerty
+    },
+    text: "l;ylfu8iy[".repeat(10000),
+  });
+  let wlEnd = performance.now();
 
-console.log(`[WL.js] A Million Hello: ${(wlEnd - wlStart) / 1000}s`);
+  wlT = wlT + (wlEnd - wlStart);
 
-let godeStart = Date.now();
-convert("QWERTY", "Kedmanee", "l;ylfu8iy[".repeat(1000000));
-let godeEnd = Date.now();
+  let godeStart = performance.now();
+  convert("QWERTY", "Kedmanee", "l;ylfu8iy[".repeat(10000));
+  let godeEnd = performance.now();
 
-console.log(`[G;ode.js] A Million Hello: ${(godeEnd - godeStart) / 1000}s`);
-// ===================================
+  godeT = godeT + (godeEnd - godeStart);
+}
+
+godeT = (godeT / 100).toFixed(2);
+wlT = (wlT / 100).toFixed(2);
+
+console.log("\n[G;ode.js] Average time: ", godeT + " ms");
+console.log("[WL.js]    Average time: ", wlT + " ms");
+
+let fasterPercent = (((godeT - wlT) / wlT) * 100).toFixed(2);
+
+console.log(
+  `\n==========[ WL.js is ${(godeT / wlT).toFixed(1)} times (${fasterPercent}%) faster than G;ode.js ]==========\n`,
+);
